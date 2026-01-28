@@ -6,6 +6,10 @@ function show(id) {
   document.getElementById(id).classList.add("active");
 }
 
+function support() {
+  tg.openTelegramLink("https://t.me/RainbowServiceBot");
+}
+
 const user = tg.initDataUnsafe.user;
 
 document.getElementById("user").innerHTML = `
@@ -18,13 +22,20 @@ document.getElementById("user").innerHTML = `
 
 function buy(plan) {
   tg.showPopup({
-    title: "Acquisto " + plan,
+    title: "Abbonamento " + plan,
     message:
-      "Per acquistare l'abbonamento:\n\n" +
-      "💳 PayPal\n" +
-      "₿ Crypto\n" +
-      "🎁 Amazon Gift Card\n\n" +
-      "Dopo il pagamento, contatta il supporto.",
+      "💳 PAYPAL\n" +
+      "Invia il pagamento a:\n" +
+      "paypal@email.com\n\n" +
+
+      "₿ CRYPTO\n" +
+      "USDT (TRC20):\n" +
+      "TXXXXXXXXXXXXXXXX\n\n" +
+
+      "🎁 AMAZON GIFT CARD\n" +
+      "Invia il codice al supporto.\n\n" +
+
+      "Dopo il pagamento, contattaci.",
     buttons: [
       { id: "support", type: "default", text: "Contatta supporto" },
       { type: "cancel", text: "Chiudi" }
@@ -32,9 +43,8 @@ function buy(plan) {
   });
 }
 
-tg.onEvent("popupClosed", () => {});
 tg.onEvent("popupButtonClicked", (id) => {
   if (id === "support") {
-    tg.openTelegramLink("https://t.me/RainbowServiceBot");
+    support();
   }
 });
