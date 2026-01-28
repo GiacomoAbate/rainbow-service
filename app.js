@@ -26,11 +26,11 @@ function buy(plan) {
     message:
       "💳 PAYPAL\n" +
       "Invia il pagamento a:\n" +
-      "contatta il supporto\n\n" +
+      "contatta il supporto per il link\n\n" +
 
       "₿ CRYPTO\n" +
       "USDT (TRC20):\n" +
-      "contatta il supporto\n\n" +
+      "contatta il supporto per il token\n\n" +
 
       "🎁 AMAZON GIFT CARD\n" +
       "Invia il codice al supporto.\n\n" +
@@ -48,4 +48,5 @@ tg.onEvent("popupButtonClicked", (id) => {
     support();
   }
 });
+
 
