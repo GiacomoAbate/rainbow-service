@@ -26,11 +26,11 @@ function buy(plan) {
     message:
       "💳 PAYPAL\n" +
       "Invia il pagamento a:\n" +
-      "paypal@email.com\n\n" +
+      "contatta il supporto\n\n" +
 
       "₿ CRYPTO\n" +
       "USDT (TRC20):\n" +
-      "TXXXXXXXXXXXXXXXX\n\n" +
+      "contatta il supporto\n\n" +
 
       "🎁 AMAZON GIFT CARD\n" +
       "Invia il codice al supporto.\n\n" +
@@ -48,3 +48,4 @@ tg.onEvent("popupButtonClicked", (id) => {
     support();
   }
 });
+
