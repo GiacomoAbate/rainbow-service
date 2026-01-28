@@ -17,5 +17,24 @@ document.getElementById("user").innerHTML = `
 `;
 
 function buy(plan) {
-  tg.showAlert("Hai scelto: " + plan + "\\n(Pagamenti in arrivo)");
+  tg.showPopup({
+    title: "Acquisto " + plan,
+    message:
+      "Per acquistare l'abbonamento:\n\n" +
+      "💳 PayPal\n" +
+      "₿ Crypto\n" +
+      "🎁 Amazon Gift Card\n\n" +
+      "Dopo il pagamento, contatta il supporto.",
+    buttons: [
+      { id: "support", type: "default", text: "Contatta supporto" },
+      { type: "cancel", text: "Chiudi" }
+    ]
+  });
 }
+
+tg.onEvent("popupClosed", () => {});
+tg.onEvent("popupButtonClicked", (id) => {
+  if (id === "support") {
+    tg.openTelegramLink("https://t.me/RainbowServiceBot");
+  }
+});
