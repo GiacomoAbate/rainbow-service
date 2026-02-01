@@ -1,63 +1,16 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Rainbow Service</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header>
   <h1>🌈 Rainbow Service</h1>
-  <p>Streaming & Abbonamenti Premium</p>
-</header>
 
-<nav>
-  <button onclick="show('shop')">Shop</button>
-  <button onclick="show('account')">Account</button>
-</nav>
+  <div id="shop"></div>
 
-<main>
-  <section id="shop" class="active">
-    <h2>Abbonamenti disponibili</h2>
-
-    <div class="card">
-      <h3>1 Mese</h3>
-      <p>Accesso streaming completo</p>
-      <strong>€9,99</strong>
-      <button onclick="buy('1 mese')">Acquista</button>
-    </div>
-
-    <div class="card">
-      <h3>3 Mesi</h3>
-      <p>Risparmia rispetto al mensile</p>
-      <strong>€24,99</strong>
-      <button onclick="buy('3 mesi')">Acquista</button>
-    </div>
-
-    <div class="card highlight">
-      <h3>6 Mesi ⭐</h3>
-      <p>Il più scelto</p>
-      <strong>€44,99</strong>
-      <button onclick="buy('6 mesi')">Acquista</button>
-    </div>
-
-    <div class="card">
-      <h3>12 Mesi</h3>
-      <p>Massimo risparmio</p>
-      <strong>€79,99</strong>
-      <button onclick="buy('12 mesi')">Acquista</button>
-    </div>
-  </section>
-
-  <section id="account">
-    <h2>Il mio account</h2>
-    <div id="user"></div>
-  </section>
-</main>
-
-<script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
