@@ -1,52 +1,37 @@
-const tg = window.Telegram.WebApp;
-tg.expand();
+const API_URL = "https://a4181-9711.b.jrnm.app/data";
+const shop = document.getElementById("shop");
 
-/* NAV */
-function show(id) {
-  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-}
+fetch(API_URL)
+  .then(res => res.json())
+  .then(data => {
+    shop.innerHTML = "";
 
-/* SUPPORTO */
-function support() {
-  tg.openTelegramLink("https://t.me/RainbowServiceBot");
-}
+    data.categories.forEach(cat => {
+      const catDiv = document.createElement("div");
+      catDiv.className = "category";
 
-/* UTENTE */
-const user = tg.initDataUnsafe.user;
-document.getElementById("user").innerHTML = `
-  <div class="card">
-    <b>Username:</b> ${user?.username || "—"}<br>
-    <b>ID:</b> ${user?.id}<br>
-    <b>Abbonamento:</b> da attivare
-  </div>
-`;
+      const title = document.createElement("h2");
+      title.innerText = cat.name;
+      catDiv.appendChild(title);
 
-/* ACQUISTO */
-function buy(plan) {
-  tg.showPopup({
-    title: "Abbonamento " + plan,
-    message:
-      "💳 PAYPAL\n" +
-      "Invia il pagamento a:\n" +
-      "contatta il supporto per il link\n\n" +
+      data.products
+        .filter(p => p.category === cat.name)
+        .forEach(p => {
+          const prod = document.createElement("div");
+          prod.className = "product";
 
-      "₿ CRYPTO\n" +
-      "USDT (TRC20):\n" +
-      "contatta il supporto per il token\n\n" +
+          prod.innerHTML = `
+            <span>${p.name}</span>
+            <span class="price">€ ${p.price}</span>
+          `;
 
-      "🎁 AMAZON GIFT CARD\n" +
-      "Invia il codice al supporto.\n\n" +
+          catDiv.appendChild(prod);
+        });
 
-      "📩 Dopo il pagamento clicca SUPPORTO.",
-    buttons: [
-      { id: "support", type: "default", text: "Contatta supporto" },
-      { type: "cancel", text: "Chiudi" }
-    ]
+      shop.appendChild(catDiv);
+    });
+  })
+  .catch(err => {
+    shop.innerHTML = "❌ Errore nel caricamento dei prodotti";
+    console.error(err);
   });
-}
-
-/* EVENTI */
-tg.onEvent("popupButtonClicked", (id) => {
-  if (id === "support") support();
-});
