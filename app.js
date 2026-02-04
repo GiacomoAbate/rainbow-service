@@ -1,37 +1,45 @@
 const API_URL = "https://a4181-9711.b.jrnm.app/data";
-const shop = document.getElementById("shop");
+
+const categoriesDiv = document.getElementById("categories");
 
 fetch(API_URL)
-  .then(r => r.json())
-  .then(data => {
-    shop.innerHTML = "";
-
-    data.categories.forEach(cat => {
-      const c = document.createElement("div");
-      c.className = "category";
-      c.innerHTML = `<h2>${cat.name}</h2>`;
-
-      data.products
-        .filter(p => p.category === cat.name)
-        .forEach(p => {
-          const box = document.createElement("div");
-          box.className = "product";
-
-          box.innerHTML = `
-            <b>${p.name}</b><br>
-            1 mese: €${p.prices["1"]}<br>
-            3 mesi: €${p.prices["3"]}<br>
-            6 mesi: €${p.prices["6"]}<br><br>
-            <button onclick="buy('${p.name}')">Acquista</button>
-          `;
-
-          c.appendChild(box);
-        });
-
-      shop.appendChild(c);
-    });
+  .then(response => response.json())
+  .then(data => renderShop(data))
+  .catch(err => {
+    categoriesDiv.innerHTML = "<p>Errore caricamento dati</p>";
+    console.error(err);
   });
 
-function buy(name) {
-  window.location.href = "https://t.me/RainbowServiceBot?start=" + name;
+function renderShop(data) {
+  categoriesDiv.innerHTML = "";
+
+  data.categories.forEach(cat => {
+    const catDiv = document.createElement("div");
+    catDiv.className = "category";
+
+    const title = document.createElement("h2");
+    title.textContent = cat.name;
+    catDiv.appendChild(title);
+
+    data.products
+      .filter(p => p.category === cat.name)
+      .forEach(prod => {
+        const prodDiv = document.createElement("div");
+        prodDiv.className = "product";
+
+        let prices = "";
+        for (const months in prod.prices) {
+          prices += `<span>${months} mesi: €${prod.prices[months]}</span><br>`;
+        }
+
+        prodDiv.innerHTML = `
+          <strong>${prod.name}</strong><br>
+          ${prices}
+        `;
+
+        catDiv.appendChild(prodDiv);
+      });
+
+    categoriesDiv.appendChild(catDiv);
+  });
 }
