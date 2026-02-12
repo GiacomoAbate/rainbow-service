@@ -1,4 +1,4 @@
-const API = "YOUR_API_URL";
+const API = https://telegram-s-069.b.jrnm.app;
 
 let allProducts = [];
 let cart = [];
@@ -113,3 +113,4 @@ function applyCoupon(){
 }
 
 loadData();
+
