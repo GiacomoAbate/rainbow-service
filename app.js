@@ -1,45 +1,115 @@
-const API_URL = "https://a4181-9711.b.jrnm.app/data";
+const API = "YOUR_API_URL";
 
-const categoriesDiv = document.getElementById("categories");
+let allProducts = [];
+let cart = [];
+let coupon = null;
 
-fetch(API_URL)
-  .then(response => response.json())
-  .then(data => renderShop(data))
-  .catch(err => {
-    categoriesDiv.innerHTML = "<p>Errore caricamento dati</p>";
-    console.error(err);
-  });
+async function loadData(){
+    const res = await fetch(API + "/data");
+    const data = await res.json();
+    allProducts = data;
+    renderCategories();
+    renderProducts(allProducts);
+}
 
-function renderShop(data) {
-  categoriesDiv.innerHTML = "";
+function renderCategories(){
+    const box = document.getElementById("categories");
+    box.innerHTML = "";
 
-  data.categories.forEach(cat => {
-    const catDiv = document.createElement("div");
-    catDiv.className = "category";
+    let cats = ["Tutti", ...new Set(allProducts.map(p=>p.category))];
 
-    const title = document.createElement("h2");
-    title.textContent = cat.name;
-    catDiv.appendChild(title);
+    cats.forEach(cat=>{
+        const el = document.createElement("div");
+        el.className="cat";
+        el.innerText=cat;
+        el.onclick=()=>{
+            if(cat==="Tutti") renderProducts(allProducts);
+            else renderProducts(allProducts.filter(p=>p.category===cat));
+        };
+        box.appendChild(el);
+    });
+}
 
-    data.products
-      .filter(p => p.category === cat.name)
-      .forEach(prod => {
-        const prodDiv = document.createElement("div");
-        prodDiv.className = "product";
+function renderProducts(list){
+    const box=document.getElementById("products");
+    box.innerHTML="";
 
-        let prices = "";
-        for (const months in prod.prices) {
-          prices += `<span>${months} mesi: €${prod.prices[months]}</span><br>`;
-        }
+    list.forEach(p=>{
+        const div=document.createElement("div");
+        div.className="product";
 
-        prodDiv.innerHTML = `
-          <strong>${prod.name}</strong><br>
-          ${prices}
+        let prices="";
+        p.prices.forEach((pr,i)=>{
+            prices+=`<button onclick="addToCart('${p.id}', '${p.name}', '${pr.label}', ${pr.price})">
+            ${pr.label} - ${pr.price}€
+            </button>`;
+        });
+
+        div.innerHTML=`
+        <h3>${p.name}</h3>
+        <small>${p.category}</small>
+        ${prices}
         `;
 
-        catDiv.appendChild(prodDiv);
-      });
-
-    categoriesDiv.appendChild(catDiv);
-  });
+        box.appendChild(div);
+    });
 }
+
+function addToCart(id,name,label,price){
+    cart.push({id,name,label,price});
+    updateCartCount();
+}
+
+function updateCartCount(){
+    document.getElementById("cartCount").innerText="🛒 "+cart.length;
+}
+
+document.getElementById("cartCount").onclick=()=>{
+    renderCart();
+    document.getElementById("cartModal").classList.remove("hidden");
+};
+
+function closeCart(){
+    document.getElementById("cartModal").classList.add("hidden");
+}
+
+function renderCart(){
+    const box=document.getElementById("cartItems");
+    box.innerHTML="";
+    let total=0;
+
+    cart.forEach((c,i)=>{
+        total+=c.price;
+        box.innerHTML+=`
+        ${c.name} ${c.label} - ${c.price}€
+        <button onclick="removeItem(${i})">❌</button>
+        <hr>`;
+    });
+
+    document.getElementById("total").innerText="Totale: "+total+"€";
+}
+
+function removeItem(i){
+    cart.splice(i,1);
+    renderCart();
+    updateCartCount();
+}
+
+async function checkout(){
+    await fetch(API+"/create_order",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({cart,coupon})
+    });
+    alert("Ordine inviato!");
+    cart=[];
+    updateCartCount();
+    closeCart();
+}
+
+function applyCoupon(){
+    coupon=document.getElementById("couponInput").value;
+    alert("Coupon applicato");
+}
+
+loadData();
