@@ -1,4 +1,4 @@
-const API = https://telegram-s-069.b.jrnm.app;
+const API = https://telegram-s-fb0.a.jrnm.app;
 
 let allProducts = [];
 let cart = [];
@@ -113,4 +113,5 @@ function applyCoupon(){
 }
 
 loadData();
+
 
