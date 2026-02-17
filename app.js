@@ -1,12 +1,12 @@
 const tg = window.Telegram.WebApp;
 tg.expand();
 
-// 1. NOME UTENTE REALE
+// Nome Utente Dinamico
 const user = tg.initDataUnsafe.user;
 document.getElementById('u-name').innerText = user ? user.first_name : "Giacomo";
 if (user && user.photo_url) document.getElementById('u-photo').src = user.photo_url;
 
-// 2. CAMBIO TAB PRINCIPALE
+// Navigazione tra le 5 pagine
 function tab(name) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -16,39 +16,19 @@ function tab(name) {
     tg.HapticFeedback.impactOccurred('light');
 }
 
-// 3. DATI SHOP (Modifica questo array per cambiare categorie e prodotti)
+// Dati Shop (Modifica qui per aggiungere categorie)
 const shopData = [
-    { 
-        name: "Emby", 
-        icon: "💻", 
-        prods: [
-            {n: "EMBY BASE", p: "€10"},
-            {n: "EMBY PREMIUM", p: "€20"}
-        ] 
-    },
-    { 
-        name: "Jellyfin", 
-        icon: "📺", 
-        prods: [
-            {n: "JELLY SERVER", p: "€15"}
-        ] 
-    },
-    { 
-        name: "Plex", 
-        icon: "🎬", 
-        prods: [
-            {n: "PLEX PASS", p: "€12"}
-        ] 
-    }
+    { name: "Emby", icon: "💻", prods: [{n: "EMBY BASE", p: "€10"}, {n: "EMBY PREMIUM", p: "€20"}] },
+    { name: "Jellyfin", icon: "📺", prods: [{n: "JELLY SERVER", p: "€15"}] },
+    { name: "Plex", icon: "🎬", prods: [{n: "PLEX PASS", p: "€12"}] }
 ];
 
-// 4. COSTRUZIONE SHOP DINAMICO (In colonna con scroll)
-function initShop() {
+function init() {
     const nav = document.getElementById('cat-nav');
     const container = document.getElementById('shop-container');
 
     shopData.forEach(cat => {
-        // Bottone rapido in alto
+        // Chip per lo scroll rapido
         const chip = document.createElement('div');
         chip.className = 'cat-chip';
         chip.innerHTML = `${cat.icon} ${cat.name}`;
@@ -58,28 +38,22 @@ function initShop() {
         };
         nav.appendChild(chip);
 
-        // Sezione Categoria
+        // Sezione prodotti
         const section = document.createElement('div');
         section.id = 'sec-' + cat.name;
         section.className = 'category-section';
-        
-        let prodsHtml = cat.prods.map(prod => `
-            <div class="product-card-vertical" onclick="tg.showConfirm('Acquista ${prod.n}?')">
-                <img src="https://via.placeholder.com/100/111/D4AF37?text=${cat.name}">
+        let items = cat.prods.map(p => `
+            <div class="product-card-v" onclick="tg.showConfirm('Acquista ${p.n}?')">
+                <img src="https://via.placeholder.com/100/111/D4AF37?text=${cat.icon}">
                 <div class="product-info">
-                    <div class="product-name">${prod.n}</div>
-                    <div style="font-size:11px; color:#666;">Streaming 4K - 24/7</div>
+                    <div class="product-name">${p.n}</div>
+                    <div style="font-size:12px; color:#888;">Streaming Alta Qualità</div>
                 </div>
-                <div class="product-price">${prod.p}</div>
-            </div>
-        `).join('');
-
-        section.innerHTML = `
-            <h3 class="category-title">| ${cat.icon} ${cat.name.toUpperCase()}</h3>
-            <div class="product-list">${prodsHtml}</div>
-        `;
+                <div style="font-weight:bold;">${p.p}</div>
+            </div>`).join('');
+        
+        section.innerHTML = `<h3 class="category-title">| ${cat.icon} ${cat.name.toUpperCase()}</h3>${items}`;
         container.appendChild(section);
     });
 }
-
-initShop();
+init();
