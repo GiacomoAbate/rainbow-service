@@ -7,50 +7,56 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <div class="app-container">
-        <header class="rainbow-header">
-            <div class="profile-section">
-                <div class="avatar-ring"><img id="u-photo" src="https://via.placeholder.com/100"></div>
-                <div class="user-text">
-                    <span class="welcome-msg">Ciao,</span>
-                    <span id="u-name" class="user-name">...</span>
+    <div class="app">
+        <header class="header">
+            <div class="user-info">
+                <div class="avatar"><img id="u-photo" src="https://via.placeholder.com/100"></div>
+                <div class="text">
+                    <span class="small">Ciao,</span>
+                    <span id="u-name" class="bold">Caricamento...</span>
                 </div>
             </div>
-            <div class="balance-badge" onclick="tab('saldo')">
-                <span class="currency">€</span><span id="u-balance">0.00</span>
+            <div class="wallet" onclick="tab('saldo')">
+                €<span id="u-balance">0.00</span>
             </div>
         </header>
 
-        <main id="main-content">
-            <section id="view-menu" class="page">
-                <div class="hero-banner"><img src="https://via.placeholder.com/600x250/111/D4AF37?text=RAINBOW+SERVICE"></div>
-                <h2 class="section-title">INFO SERVIZIO</h2>
-                <div class="info-cards-grid">
-                    <div class="info-card">🛡️<br>SICUREZZA</div>
-                    <div class="info-card">⚡<br>RAPIDITÀ</div>
-                    <div class="info-card gold-fill">💬<br>VANTAGGI</div>
+        <main id="content">
+            <section id="page-menu" class="page active">
+                <div class="banner"><img src="https://via.placeholder.com/600x250/111/D4AF37?text=RAINBOW+SERVICE"></div>
+                <h2 class="title">INFO SERVIZIO</h2>
+                <div class="grid">
+                    <div class="card">🛡️ SICUREZZA</div>
+                    <div class="card">⚡ RAPIDITÀ</div>
+                    <div class="card gold">💬 VANTAGGI</div>
                 </div>
-                <button class="community-wide-btn">COMMUNITY</button>
+                <button class="btn-main">COMMUNITY</button>
             </section>
 
-            <section id="view-saldo" class="page" style="display:none;">
-                <h2 class="section-title">PORTAFOGLIO</h2>
-                <div class="wallet-card">
-                    <div class="wallet-amount">€<span id="u-balance-large">0.00</span></div>
-                    <button class="deposit-btn">RICARICA ORA</button>
+            <section id="page-saldo" class="page">
+                <h2 class="title">IL TUO SALDO</h2>
+                <div class="wallet-box">
+                    <div class="amount">€<span id="u-balance-big">0.00</span></div>
+                    <button class="btn-main" onclick="alert('Contatta l\'admin')">RICARICA ORA</button>
                 </div>
             </section>
 
-            <section id="view-info" class="page" style="display:none;">
-                <h2 class="section-title">INFO & SUPPORTO</h2>
-                <div class="support-item">✉️ Contatta Admin</div>
+            <section id="page-info" class="page">
+                <h2 class="title">SUPPORTO</h2>
+                <div class="card">✉️ Contatta l'Admin per assistenza</div>
             </section>
         </main>
 
-        <nav class="bottom-nav">
-            <div class="nav-item active" onclick="tab('menu')"><span>≡</span><p>MENU</p></div>
-            <div class="nav-item" onclick="tab('info')"><span>ⓘ</span><p>INFO</p></div>
-            <div class="nav-item" onclick="tab('saldo')"><span>💳</span><p>SALDO</p></div>
+        <nav class="navbar">
+            <div class="nav-item active" id="btn-menu" onclick="tab('menu')">
+                <span class="icon">≡</span><p>MENU</p>
+            </div>
+            <div class="nav-item" id="btn-info" onclick="tab('info')">
+                <span class="icon">ⓘ</span><p>INFO</p>
+            </div>
+            <div class="nav-item" id="btn-saldo" onclick="tab('saldo')">
+                <span class="icon">💳</span><p>SALDO</p>
+            </div>
         </nav>
     </div>
     <script src="app.js"></script>
