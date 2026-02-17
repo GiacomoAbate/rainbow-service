@@ -10,53 +10,75 @@
     <div class="app">
         <header class="header">
             <div class="user-info">
-                <div class="avatar"><img id="u-photo" src="https://via.placeholder.com/100"></div>
+                <div class="avatar-ring"><img id="u-photo" src=""></div>
                 <div class="text">
                     <span class="small">Ciao,</span>
-                    <span id="u-name" class="bold">Caricamento...</span>
+                    <span id="u-name" class="bold">Giacomo</span>
                 </div>
             </div>
-            <div class="wallet" onclick="tab('saldo')">
-                €<span id="u-balance">0.00</span>
+            <div class="wallet-pill" onclick="tab('saldo')">
+                <span>💳</span> <span id="u-balance">€0.00</span>
             </div>
         </header>
 
         <main id="content">
             <section id="page-menu" class="page active">
-                <div class="banner"><img src="https://via.placeholder.com/600x250/111/D4AF37?text=RAINBOW+SERVICE"></div>
-                <h2 class="title">INFO SERVIZIO</h2>
-                <div class="grid">
-                    <div class="card">🛡️ SICUREZZA</div>
-                    <div class="card">⚡ RAPIDITÀ</div>
-                    <div class="card gold">💬 VANTAGGI</div>
+                <div class="hero">
+                    <h1 class="hero-title">RAINBOW SERVICE</h1>
+                    <p class="hero-desc">L'eccellenza dello streaming cinematografico.</p>
                 </div>
-                <button class="btn-main">COMMUNITY</button>
-            </section>
-
-            <section id="page-saldo" class="page">
-                <h2 class="title">IL TUO SALDO</h2>
-                <div class="wallet-box">
-                    <div class="amount">€<span id="u-balance-big">0.00</span></div>
-                    <button class="btn-main" onclick="alert('Contatta l\'admin')">RICARICA ORA</button>
-                </div>
+                <div id="cat-list" class="categories-scroll"></div>
+                <h3 id="cat-selected-title" class="page-subtitle">| 💻 CARICAMENTO...</h3>
+                <div id="prod-list" class="product-grid"></div>
             </section>
 
             <section id="page-info" class="page">
-                <h2 class="title">SUPPORTO</h2>
-                <div class="card">✉️ Contatta l'Admin per assistenza</div>
+                <h1 class="page-title">INFO SERVIZIO</h1>
+                <div class="info-card">
+                    <h4>🛡️ Sicurezza Totale</h4>
+                    <p>Sistemi di crittografia avanzati per proteggere ogni transazione.</p>
+                </div>
+                <div class="info-card">
+                    <h4>⚡ Attivazione Rapida</h4>
+                    <p>Ordini processati entro 15 minuti dal pagamento.</p>
+                </div>
+            </section>
+
+            <section id="page-gruppo" class="page">
+                <h1 class="page-title">COMMUNITY</h1>
+                <div class="comm-card">
+                    <span class="big-icon">👥</span>
+                    <p>Oltre 800 membri attivi che condividono feedback ogni giorno.</p>
+                    <button class="gold-btn">UNISCITI AL CANALE</button>
+                </div>
+            </section>
+
+            <section id="page-saldo" class="page">
+                <h1 class="page-title">IL TUO PORTAFOGLIO</h1>
+                <div class="wallet-card">
+                    <p>SALDO DISPONIBILE</p>
+                    <h2 class="big-money">€<span id="u-balance-big">0.00</span></h2>
+                    <button class="outline-btn">AGGIUNGI FONDI</button>
+                    <button class="outline-btn" id="btn-cronologia">CRONOLOGIA ACQUISTI</button>
+                </div>
+            </section>
+
+            <section id="page-contatti" class="page">
+                <h1 class="page-title">ASSISTENZA</h1>
+                <div class="info-card">
+                    <h4>💬 Supporto Live</h4>
+                    <p>Siamo online per rispondere a ogni tua domanda.</p>
+                    <button class="gold-btn">PARLA CON UN OPERATORE</button>
+                </div>
             </section>
         </main>
 
         <nav class="navbar">
-            <div class="nav-item active" id="btn-menu" onclick="tab('menu')">
-                <span class="icon">≡</span><p>MENU</p>
-            </div>
-            <div class="nav-item" id="btn-info" onclick="tab('info')">
-                <span class="icon">ⓘ</span><p>INFO</p>
-            </div>
-            <div class="nav-item" id="btn-saldo" onclick="tab('saldo')">
-                <span class="icon">💳</span><p>SALDO</p>
-            </div>
+            <div class="nav-item active" id="nav-menu" onclick="tab('menu')"><span>≡</span><p>MENU</p></div>
+            <div class="nav-item" id="nav-info" onclick="tab('info')"><span>ⓘ</span><p>INFO</p></div>
+            <div class="nav-item" id="nav-gruppo" onclick="tab('gruppo')"><span>👥</span><p>GRUPPO</p></div>
+            <div class="nav-item" id="nav-saldo" onclick="tab('saldo')"><span>💳</span><p>SALDO</p></div>
+            <div class="nav-item" id="nav-contatti" onclick="tab('contatti')"><span>✉️</span><p>CONTATTI</p></div>
         </nav>
     </div>
     <script src="app.js"></script>
