@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Rainbow Shop Bot</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
@@ -10,14 +11,14 @@
     <div class="app">
         <header class="header">
             <div class="user-info">
-                <div class="avatar-ring"><img id="u-photo" src=""></div>
+                <div class="avatar-ring"><img id="u-photo" src="https://via.placeholder.com/100"></div>
                 <div class="text">
                     <span class="small">Ciao,</span>
-                    <span id="u-name" class="bold">Giacomo</span>
+                    <span id="u-name" class="bold">Caricamento...</span>
                 </div>
             </div>
             <div class="wallet-pill" onclick="tab('saldo')">
-                <span>💳</span> <span id="u-balance">€44.00</span>
+                <span id="u-balance">€44.00</span>
             </div>
         </header>
 
@@ -25,6 +26,7 @@
             <section id="page-menu" class="page active">
                 <div class="hero">
                     <h1 class="gold-glow">RAINBOW SERVICE</h1>
+                    <p>L'eccellenza dello streaming cinematografico.</p>
                 </div>
                 
                 <div id="cat-nav" class="categories-scroll"></div>
@@ -32,18 +34,67 @@
                 <div id="shop-container"></div>
             </section>
 
-            <section id="page-info" class="page">...</section>
-            <section id="page-gruppo" class="page">...</section>
-            <section id="page-saldo" class="page">...</section>
-            <section id="page-contatti" class="page">...</section>
+            <section id="page-info" class="page">
+                <h1 class="page-title">INFO SERVIZIO</h1>
+                <div class="info-card">
+                    <h4 class="gold-title">🛡️ Sicurezza Totale</h4>
+                    <p>Utilizziamo sistemi di crittografia avanzati per proteggere ogni tua transazione e i tuoi dati personali.</p>
+                </div>
+                <div class="info-card">
+                    <h4 class="gold-title">⚡ Attivazione Rapida</h4>
+                    <p>Il 95% degli ordini viene processato ed attivato entro 15 minuti dalla conferma del pagamento.</p>
+                </div>
+                <div class="info-card">
+                    <h4 class="gold-title">🎗️ Vantaggi per i membri</h4>
+                    <p>Supporto tecnico diretto su telegram, contenuti aggiornati giornalmente, 4 anni di esperienza tra Server Hosting e Streaming.</p>
+                </div>
+            </section>
+
+            <section id="page-gruppo" class="page">
+                <h1 class="page-title">COMMUNITY</h1>
+                <div class="card-box">
+                    <div class="icon-big">👥</div>
+                    <p>Oltre 800 membri attivi che condividono feedback e suggerimenti ogni giorno.</p>
+                    <button class="gold-btn">UNISCITI AL CANALE</button>
+                </div>
+            </section>
+
+            <section id="page-saldo" class="page">
+                <h1 class="page-title">IL TUO PORTAFOGLIO</h1>
+                <div class="card-box-wallet">
+                    <p class="label-small">SALDO DISPONIBILE</p>
+                    <h2 class="price-giant">€<span id="u-balance-big">44.00</span></h2>
+                    <button class="outline-btn">AGGIUNGI FONDI</button>
+                    <button class="outline-btn">CRONOLOGIA ACQUISTI</button>
+                </div>
+            </section>
+
+            <section id="page-contatti" class="page">
+                <h1 class="page-title">ASSISTENZA</h1>
+                <div class="card-box">
+                    <h4 class="gold-title">💬 Supporto Live</h4>
+                    <p>Siamo online per rispondere a ogni tua domanda.</p>
+                    <button class="gold-btn">PARLA CON UN OPERATORE</button>
+                </div>
+            </section>
         </main>
 
         <nav class="navbar">
-            <div class="nav-item active" id="nav-menu" onclick="tab('menu')"><span>≡</span><p>MENU</p></div>
-            <div class="nav-item" id="nav-info" onclick="tab('info')"><span>ⓘ</span><p>INFO</p></div>
-            <div class="nav-item" id="nav-gruppo" onclick="tab('gruppo')"><span>👥</span><p>GRUPPO</p></div>
-            <div class="nav-item" id="nav-saldo" onclick="tab('saldo')"><span>💳</span><p>SALDO</p></div>
-            <div class="nav-item" id="nav-contatti" onclick="tab('contatti')"><span>✉️</span><p>CONTATTI</p></div>
+            <div class="nav-item active" id="nav-menu" onclick="tab('menu')">
+                <span class="icon">≡</span><p>MENU</p>
+            </div>
+            <div class="nav-item" id="nav-info" onclick="tab('info')">
+                <span class="icon">ⓘ</span><p>INFO</p>
+            </div>
+            <div class="nav-item" id="nav-gruppo" onclick="tab('gruppo')">
+                <span class="icon">👥</span><p>GRUPPO</p>
+            </div>
+            <div class="nav-item" id="nav-saldo" onclick="tab('saldo')">
+                <span class="icon">💳</span><p>SALDO</p>
+            </div>
+            <div class="nav-item" id="nav-contatti" onclick="tab('contatti')">
+                <span class="icon">✉️</span><p>CONTATTI</p>
+            </div>
         </nav>
     </div>
     <script src="app.js"></script>
