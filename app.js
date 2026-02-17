@@ -1,55 +1,59 @@
 const tg = window.Telegram.WebApp;
 tg.expand();
 
-// 1. IMPOSTA NOME UTENTE DINAMICO
+// 1. IMPOSTA NOME UTENTE REALE
 const user = tg.initDataUnsafe.user;
 document.getElementById('u-name').innerText = user ? user.first_name : "Giacomo";
 if (user && user.photo_url) document.getElementById('u-photo').src = user.photo_url;
 
-// 2. CAMBIO PAGINA (TAB)
+// 2. FUNZIONE CAMBIO TAB
 function tab(name) {
+    // Gestione Pagine
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
     document.getElementById('page-' + name).classList.add('active');
+
+    // Gestione Bottoni Navbar
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
     document.getElementById('nav-' + name).classList.add('active');
+    
     tg.HapticFeedback.impactOccurred('light');
 }
 
-// 3. LOGICA CATEGORIE (Simulazione dati che riceverai dal bot)
-const myData = [
-    { name: "Emby", icon: "💻", prods: [{n: "EMBY BASE", img: "b.jpg"}, {n: "EMBY PREMIUM", img: "p.jpg"}] },
-    { name: "Jellyfin", icon: "📺", prods: [{n: "JELLY SERVER", img: "j.jpg"}] },
-    { name: "Plex", icon: "🎬", prods: [{n: "PLEX PASS", img: "pl.jpg"}] }
+// 3. LOGICA CATEGORIE DINAMICHE (Dati che verranno dal tuo bot)
+const databaseBot = [
+    { nome: "Emby", icona: "💻", prods: [{t: "EMBY BASE"}, {t: "EMBY PREMIUM"}] },
+    { nome: "Jellyfin", icona: "📺", prods: [{t: "JELLY SERVER"}] },
+    { nome: "Plex", icona: "🎬", prods: [{t: "PLEX PASS"}] }
 ];
 
-function loadCategories() {
-    const list = document.getElementById('cat-list');
-    myData.forEach((cat, i) => {
-        const div = document.createElement('div');
-        div.className = `cat-item ${i===0?'active':''}`;
-        div.innerHTML = `${cat.icon} ${cat.name}`;
-        div.onclick = () => {
-            document.querySelectorAll('.cat-item').forEach(item => item.classList.remove('active'));
-            div.classList.add('active');
-            renderProducts(cat);
+function inizializzaShop() {
+    const container = document.getElementById('cat-list');
+    databaseBot.forEach((cat, index) => {
+        const chip = document.createElement('div');
+        chip.className = `cat-chip ${index === 0 ? 'active' : ''}`;
+        chip.innerHTML = `${cat.icona} ${cat.nome}`;
+        chip.onclick = () => {
+            document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            caricaProdotti(cat);
         };
-        list.appendChild(div);
+        container.appendChild(chip);
     });
-    renderProducts(myData[0]);
+    caricaProdotti(databaseBot[0]);
 }
 
-function renderProducts(cat) {
-    document.getElementById('cat-selected-title').innerText = `| ${cat.icon} ${cat.name.toUpperCase()}`;
+function caricaProdotti(categoria) {
+    document.getElementById('cat-selected-title').innerText = `| ${categoria.icona} ${categoria.nome.toUpperCase()}`;
     const grid = document.getElementById('prod-list');
     grid.innerHTML = '';
-    cat.prods.forEach(p => {
+    categoria.prods.forEach(p => {
         grid.innerHTML += `
-            <div class="product-card" onclick="tg.showConfirm('Vuoi acquistare ${p.n}?')">
-                <div class="prod-tag">${p.n}</div>
-                <img src="https://via.placeholder.com/150x200/111/D4AF37?text=Product" style="width:100%">
+            <div class="product-card" onclick="tg.showConfirm('Vuoi acquistare ${p.t}?')">
+                <div class="prod-tag">${p.t}</div>
+                <img src="https://via.placeholder.com/200x250/111/D4AF37?text=Rainbow+Service" style="width:100%; display:block;">
             </div>
         `;
     });
 }
 
-loadCategories();
+inizializzaShop();
