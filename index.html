@@ -23,8 +23,37 @@
 
         <main id="content">
             <section id="page-menu" class="page active">
+                <div class="hero">
+                    <h1 class="gold-glow">RAINBOW SERVICE</h1>
+                    <p>L'eccellenza dello streaming cinematografico.</p>
+                </div>
                 <div id="cat-nav" class="categories-scroll"></div>
                 <div id="shop-container"></div>
+            </section>
+
+            <section id="page-info" class="page">
+                <h1 class="page-title">INFO SERVIZIO</h1>
+                <div class="info-card">
+                    <h4 class="gold-title">🛡️ Sicurezza Totale</h4>
+                    <p>Utilizziamo sistemi di crittografia avanzati per proteggere ogni tua transazione e i tuoi dati personali.</p>
+                </div>
+                <div class="info-card">
+                    <h4 class="gold-title">⚡ Attivazione Rapida</h4>
+                    <p>Il 95% degli ordini viene processato ed attivato entro 15 minuti dalla conferma del pagamento.</p>
+                </div>
+                <div class="info-card">
+                    <h4 class="gold-title">🎗️ Vantaggi per i membri</h4>
+                    <p>Supporto tecnico diretto su telegram, contenuti aggiornati giornalmente, 4 anni di esperienza tra Server Hosting e Streaming.</p>
+                </div>
+            </section>
+
+            <section id="page-gruppo" class="page">
+                <h1 class="page-title">COMMUNITY</h1>
+                <div class="card-box">
+                    <div class="icon-big">👥</div>
+                    <p>Oltre 800 membri attivi che condividono feedback e suggerimenti ogni giorno.</p>
+                    <button class="gold-btn-full" onclick="window.open('https://t.me/tuocanale')">UNISCITI AL CANALE</button>
+                </div>
             </section>
 
             <section id="page-saldo" class="page">
@@ -33,21 +62,19 @@
                     <p class="label-saldo">SALDO DISPONIBILE</p>
                     <h2 class="main-balance">€44.00</h2>
                     <p class="desc-saldo">Utilizza il credito per acquistare i tuoi abbonamenti preferiti in un click.</p>
-                    
                     <button class="action-btn" onclick="aggiungiFondi()">AGGIUNGI FONDI</button>
-                    <button class="action-btn" onclick="mostraCronologia()">CRONOLOGIA ACQUISTI</button>
+                    <button class="action-btn" onclick="tg.showAlert('Funzione cronologia in arrivo')">CRONOLOGIA ACQUISTI</button>
                 </div>
             </section>
 
-            <div id="modal-cronologia" class="modal">
-                <div class="modal-content">
-                    <h3>Cronologia Acquisti</h3>
-                    <div id="lista-acquisti">
-                        <p style="font-size:12px; color:#888;">Nessun acquisto recente.</p>
-                    </div>
-                    <button class="gold-btn-small" onclick="chiudiCronologia()">CHIUDI</button>
+            <section id="page-contatti" class="page">
+                <h1 class="page-title">ASSISTENZA</h1>
+                <div class="card-box">
+                    <h4 class="gold-title">💬 Supporto Live</h4>
+                    <p>Siamo online per rispondere a ogni tua domanda.</p>
+                    <button class="gold-btn-full" onclick="tg.close()">PARLA CON UN OPERATORE</button>
                 </div>
-            </div>
+            </section>
         </main>
 
         <nav class="navbar">
