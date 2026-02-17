@@ -1,35 +1,95 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rainbow Shop</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Rainbow Shop</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
+    <div id="flash-bar" class="flash-sale-banner" style="display:none;">
+        ⚡ FLASH SALE ATTIVA: <span id="timer">00:00:00</span>
+    </div>
 
-<header>
-  <h1>🌈 Rainbow Shop</h1>
-  <div id="balance">Saldo: -- €</div>
-  <div id="cartCount">🛒 0</div>
-</header>
+    <div class="app-container">
+        <header class="rainbow-header">
+            <div class="profile-section">
+                <div class="avatar-ring">
+                    <img id="u-photo" src="https://via.placeholder.com/100" alt="avatar">
+                </div>
+                <div class="user-text">
+                    <span class="welcome-msg">Ciao,</span>
+                    <span id="u-name" class="user-name">Giacomo</span>
+                </div>
+            </div>
+            <div class="balance-badge" onclick="tab('saldo')">
+                <span class="currency">€</span><span id="u-balance">0.00</span>
+            </div>
+        </header>
 
-<div id="categories"></div>
+        <main id="main-content">
+            <section id="view-menu" class="page active">
+                <div class="hero-banner">
+                    <img src="https://via.placeholder.com/600x250/111/D4AF37?text=RAINBOW+SERVICE" alt="Banner">
+                </div>
+                
+                <h2 class="section-title">INFO SERVIZIO</h2>
+                <div class="info-cards-grid">
+                    <div class="info-card">🛡️<br>SICUREZZA</div>
+                    <div class="info-card">⚡<br>RAPIDITÀ</div>
+                    <div class="info-card gold-fill">💬<br>VANTAGGI<br><button class="mini-btn">JOIN</button></div>
+                </div>
 
-<div id="products"></div>
+                <button class="community-wide-btn">COMMUNITY</button>
 
-<div id="cartModal" class="modal hidden">
-  <div class="modal-content">
-    <h2>🛒 Carrello</h2>
-    <div id="cartItems"></div>
-    <h3 id="total"></h3>
-    <input id="couponInput" placeholder="Coupon">
-    <button onclick="applyCoupon()">Applica Coupon</button>
-    <button onclick="checkout()">Checkout</button>
-    <button onclick="closeCart()">Chiudi</button>
-  </div>
-</div>
+                <div id="products-container">
+                    </div>
+            </section>
 
-<script src="app.js"></script>
+            <section id="view-saldo" class="page" style="display:none;">
+                <h2 class="section-title">IL TUO PORTAFOGLIO</h2>
+                <div class="wallet-card">
+                    <div class="wallet-amount">€<span id="u-balance-large">0.00</span></div>
+                    <button class="deposit-btn" onclick="tg.showAlert('Contatta l\'admin per ricaricare tramite Crypto o PayPal.')">RICARICA ORA</button>
+                </div>
+                
+                <h2 class="section-title">CRONOLOGIA ATTIVITÀ</h2>
+                <div id="history-list" class="history-list">
+                    </div>
+            </section>
+
+            <section id="view-info" class="page" style="display:none;">
+                <h2 class="section-title">SUPPORTO & INFO</h2>
+                <div class="support-container">
+                    <div class="support-item" onclick="tg.openTelegramLink('https://t.me/tuo_username')">
+                        <span>✉️ Contatta Admin</span>
+                    </div>
+                    <div class="support-item">
+                        <span>❓ FAQ & Regole</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <nav class="bottom-nav">
+            <div class="nav-item active" onclick="tab('menu')">
+                <span class="nav-icon">≡</span><p>MENU</p>
+            </div>
+            <div class="nav-item" onclick="tab('info')">
+                <span class="nav-icon">ⓘ</span><p>INFO</p>
+            </div>
+            <div class="nav-item" onclick="tab('gruppo')">
+                <span class="nav-icon">👥</span><p>GRUPPO</p>
+            </div>
+            <div class="nav-item" onclick="tab('saldo')">
+                <span class="nav-icon">💳</span><p>SALDO</p>
+            </div>
+            <div class="nav-item" onclick="tab('contatti')">
+                <span class="nav-icon">✉️</span><p>CONTATTI</p>
+            </div>
+        </nav>
+    </div>
+    <script src="app.js"></script>
 </body>
 </html>
