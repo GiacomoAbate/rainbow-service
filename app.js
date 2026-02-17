@@ -1,49 +1,41 @@
-const API = https://shop-premi-c20.d.jrnm.app;
+const tg = window.Telegram.WebApp;
+tg.expand();
 
-let allProducts = [];
-let cart = [];
-let coupon = null;
-
-async function loadData(){
-    const res = await fetch(API + "/data");
-    const data = await res.json();
-    allProducts = data;
-    renderCategories();
-    renderProducts(allProducts);
+// Caricamento Dati Utente reali da Telegram
+document.getElementById('u-name').innerText = tg.initDataUnsafe.user.first_name || "Giacomo";
+if(tg.initDataUnsafe.user.photo_url) {
+    document.getElementById('u-photo').src = tg.initDataUnsafe.user.photo_url;
 }
 
-function renderCategories(){
-    const box = document.getElementById("categories");
-    box.innerHTML = "";
+// Gestione Navigazione Pagine (Tab)
+function tab(target) {
+    // Rimuovi active da tutti i tasti
+    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+    // Aggiungi active al tasto premuto (usiamo event.currentTarget)
+    event.currentTarget.classList.add('active');
 
-    let cats = ["Tutti", ...new Set(allProducts.map(p=>p.category))];
-
-    cats.forEach(cat=>{
-        const el = document.createElement("div");
-        el.className="cat";
-        el.innerText=cat;
-        el.onclick=()=>{
-            if(cat==="Tutti") renderProducts(allProducts);
-            else renderProducts(allProducts.filter(p=>p.category===cat));
-        };
-        box.appendChild(el);
+    // Nascondi tutte le pagine
+    document.querySelectorAll('.page').forEach(page => {
+        page.style.display = 'none';
+        page.classList.remove('active');
     });
+
+    // Mostra la pagina corretta
+    const selectedPage = document.getElementById('view-' + target);
+    if(selectedPage) {
+        selectedPage.style.display = 'block';
+        setTimeout(() => selectedPage.classList.add('active'), 10);
+    }
 }
 
-function renderProducts(list){
-    const box=document.getElementById("products");
-    box.innerHTML="";
-
-    list.forEach(p=>{
-        const div=document.createElement("div");
-        div.className="product";
-
-        let prices="";
-        p.prices.forEach((pr,i)=>{
-            prices+=`<button onclick="addToCart('${p.id}', '${p.name}', '${pr.label}', ${pr.price})">
-            ${pr.label} - ${pr.price}€
-            </button>`;
-        });
+// Funzione per aggiornare il saldo in tempo reale (chiamata dal bot)
+window.addEventListener('message', function(event) {
+    const data = event.data;
+    if (data.type === 'update_balance') {
+        document.getElementById('u-balance').innerText = data.value;
+        document.getElementById('u-balance-large').innerText = data.value;
+    }
+});
 
         div.innerHTML=`
         <h3>${p.name}</h3>
@@ -113,6 +105,7 @@ function applyCoupon(){
 }
 
 loadData();
+
 
 
 
