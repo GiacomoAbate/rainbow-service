@@ -13,89 +13,37 @@
                 <div class="avatar-ring"><img id="u-photo" src=""></div>
                 <div class="text">
                     <span class="small">Ciao,</span>
-                    <span id="u-name" class="bold">...</span>
+                    <span id="u-name" class="bold">Giacomo</span>
                 </div>
             </div>
             <div class="wallet-pill" onclick="tab('saldo')">
-                <span><img src="https://img.icons8.com/material-outlined/24/D4AF37/wallet--v1.png" style="width:14px; vertical-align:middle;"></span> 
-                <span id="u-balance">€0.00</span>
+                <span>💳</span> <span id="u-balance">€44.00</span>
             </div>
         </header>
 
         <main id="content">
             <section id="page-menu" class="page active">
-                <div class="hero-banner">
-                    <h1 class="gold-glow">RAINBOW<br>SERVICE</h1>
-                    <p>L'eccellenza dello streaming cinematografico.</p>
+                <div class="hero">
+                    <h1 class="gold-glow">RAINBOW SERVICE</h1>
                 </div>
-                <div id="cat-list" class="categories-scroll"></div>
-                <h3 id="cat-selected-title" class="category-header">| 💻 CARICAMENTO...</h3>
-                <div id="prod-list" class="product-grid"></div>
+                
+                <div id="cat-nav" class="categories-scroll"></div>
+
+                <div id="shop-container"></div>
             </section>
 
-            <section id="page-info" class="page">
-                <h1 class="page-title">INFO SERVIZIO</h1>
-                <div class="info-card">
-                    <h4 class="gold-title">🛡️ Sicurezza Totale</h4>
-                    <p>Utilizziamo sistemi di crittografia avanzati per proteggere ogni tua transazione e i tuoi dati personali.</p>
-                </div>
-                <div class="info-card">
-                    <h4 class="gold-title">⚡ Attivazione Rapida</h4>
-                    <p>Il 95% degli ordini viene processato ed attivato entro 15 minuti dalla conferma del pagamento.</p>
-                </div>
-                <div class="info-card">
-                    <h4 class="gold-title">🎗️ Vantaggi per i membri</h4>
-                    <p>Supporto tecnico diretto su telegram, contenuti aggiornati giornalmente, 4 anni di esperienza tra Server Hosting e Streaming.</p>
-                </div>
-            </section>
-
-            <section id="page-gruppo" class="page">
-                <h1 class="page-title">COMMUNITY</h1>
-                <p class="sub-text">Entra a far parte del gruppo di Rainbow Service.</p>
-                <div class="card-box">
-                    <div class="icon-big">👥</div>
-                    <p>Oltre 800 membri attivi che condividono feedback e suggerimenti ogni giorno.</p>
-                    <button class="full-gold-btn">UNISCITI AL CANALE</button>
-                </div>
-            </section>
-
-            <section id="page-saldo" class="page">
-                <h1 class="page-title">IL TUO PORTAFOGLIO</h1>
-                <div class="card-box-wallet">
-                    <p class="label-small">SALDO DISPONIBILE</p>
-                    <h2 class="price-giant">€<span id="u-balance-big">0.00</span></h2>
-                    <p class="desc-small">Utilizza il credito per acquistare i tuoi abbonamenti preferiti in un click.</p>
-                    <button class="border-btn">AGGIUNGI FONDI</button>
-                    <button class="border-btn">CRONOLOGIA ACQUISTI</button>
-                </div>
-            </section>
-
-            <section id="page-contatti" class="page">
-                <h1 class="page-title">ASSISTENZA</h1>
-                <div class="card-box">
-                    <h4 class="gold-title">💬 Supporto Live</h4>
-                    <p>Siamo online per rispondere a ogni tua domanda.</p>
-                    <button class="full-gold-btn">PARLA CON UN OPERATORE</button>
-                </div>
-            </section>
+            <section id="page-info" class="page">...</section>
+            <section id="page-gruppo" class="page">...</section>
+            <section id="page-saldo" class="page">...</section>
+            <section id="page-contatti" class="page">...</section>
         </main>
 
         <nav class="navbar">
-            <div class="nav-item active" id="nav-menu" onclick="tab('menu')">
-                <img src="https://img.icons8.com/material-outlined/24/666666/menu--v1.png" class="nav-img"><p>MENU</p>
-            </div>
-            <div class="nav-item" id="nav-info" onclick="tab('info')">
-                <img src="https://img.icons8.com/material-outlined/24/666666/info--v1.png" class="nav-img"><p>INFO</p>
-            </div>
-            <div class="nav-item" id="nav-gruppo" onclick="tab('gruppo')">
-                <img src="https://img.icons8.com/material-outlined/24/666666/conference-call.png" class="nav-img"><p>GRUPPO</p>
-            </div>
-            <div class="nav-item" id="nav-saldo" onclick="tab('saldo')">
-                <img src="https://img.icons8.com/material-outlined/24/666666/wallet--v1.png" class="nav-img"><p>SALDO</p>
-            </div>
-            <div class="nav-item" id="nav-contatti" onclick="tab('contatti')">
-                <img src="https://img.icons8.com/material-outlined/24/666666/mail.png" class="nav-img"><p>CONTATTI</p>
-            </div>
+            <div class="nav-item active" id="nav-menu" onclick="tab('menu')"><span>≡</span><p>MENU</p></div>
+            <div class="nav-item" id="nav-info" onclick="tab('info')"><span>ⓘ</span><p>INFO</p></div>
+            <div class="nav-item" id="nav-gruppo" onclick="tab('gruppo')"><span>👥</span><p>GRUPPO</p></div>
+            <div class="nav-item" id="nav-saldo" onclick="tab('saldo')"><span>💳</span><p>SALDO</p></div>
+            <div class="nav-item" id="nav-contatti" onclick="tab('contatti')"><span>✉️</span><p>CONTATTI</p></div>
         </nav>
     </div>
     <script src="app.js"></script>
