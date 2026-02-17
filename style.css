@@ -1,43 +1,45 @@
-:root { --gold: #D4AF37; --card-bg: #0f0f0f; }
-body { background: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, sans-serif; margin: 0; padding-bottom: 90px; }
+:root { --gold: #D4AF37; --dark: #0f0f0f; }
+body { background: #000; color: #fff; font-family: sans-serif; margin: 0; padding-bottom: 100px; }
 
 /* Header */
-.header { display: flex; justify-content: space-between; padding: 15px; align-items: center; }
+.header { display: flex; justify-content: space-between; padding: 15px; align-items: center; position: sticky; top: 0; background: #000; z-index: 100; }
 .avatar-ring { width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid var(--gold); overflow: hidden; }
 .avatar-ring img { width: 100%; height: 100%; object-fit: cover; }
-.wallet-pill { background: rgba(212, 175, 55, 0.1); border: 1px solid var(--gold); padding: 6px 14px; border-radius: 20px; color: var(--gold); font-weight: bold; font-size: 14px; }
+.wallet-pill { border: 1px solid var(--gold); padding: 6px 14px; border-radius: 20px; color: var(--gold); font-weight: bold; font-size: 14px; background: rgba(212, 175, 55, 0.1); }
 
 /* Pagine */
-.page { display: none; padding: 0 15px; animation: fadeIn 0.2s; }
+.page { display: none; padding: 0 15px; animation: fadeIn 0.3s; }
 .page.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-.page-title { text-align: center; color: var(--gold); font-size: 28px; margin: 25px 0; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+.page-title { text-align: center; color: var(--gold); font-size: 26px; margin: 25px 0; font-weight: 800; text-transform: uppercase; }
 
-/* Stile INFO (le tue card) */
-.info-card { background: var(--card-bg); padding: 20px; border-radius: 15px; border: 1px solid #1a1a1a; margin-bottom: 15px; text-align: left; }
+/* Stile INFO Card */
+.info-card { background: var(--dark); padding: 20px; border-radius: 15px; border: 1px solid #1a1a1a; margin-bottom: 15px; }
 .gold-title { color: var(--gold); margin: 0 0 10px 0; font-size: 18px; }
 .info-card p { color: #ccc; line-height: 1.5; font-size: 14px; margin: 0; }
 
-/* Altre Card */
-.card-box, .card-box-wallet { background: var(--card-bg); padding: 25px; border-radius: 15px; border: 1px solid #1a1a1a; text-align: center; margin-top: 20px; }
-.card-box-wallet { border-color: var(--gold); }
-.price-giant { color: var(--gold); font-size: 40px; margin: 15px 0; }
+/* Shop Colonna & Scroll */
+.categories-scroll { display: flex; overflow-x: auto; gap: 10px; padding: 10px 0; sticky; top: 70px; background: #000; z-index: 90; }
+.cat-chip { background: #111; padding: 8px 18px; border-radius: 20px; border: 1px solid #333; white-space: nowrap; font-size: 13px; cursor: pointer; }
+.category-section { scroll-margin-top: 130px; margin-top: 30px; }
+.category-title { border-left: 4px solid var(--gold); padding-left: 10px; margin-bottom: 15px; font-size: 20px; color: #fff; }
 
-/* Bottoni */
-.full-gold-btn { background: var(--gold); border: none; width: 100%; padding: 15px; border-radius: 30px; font-weight: bold; font-size: 15px; margin-top: 20px; cursor: pointer; }
-.border-btn { background: none; border: 1.5px solid #333; color: var(--gold); width: 100%; padding: 13px; border-radius: 30px; margin-top: 12px; font-weight: bold; }
+.product-card-vertical { background: var(--dark); border: 1px solid #1a1a1a; border-radius: 12px; display: flex; align-items: center; padding: 12px; margin-bottom: 12px; }
+.product-card-vertical img { width: 70px; height: 70px; border-radius: 8px; object-fit: cover; }
+.product-info { margin-left: 15px; flex: 1; }
+.product-name { font-weight: bold; color: var(--gold); margin-bottom: 4px; }
+.product-price { color: #fff; font-weight: bold; }
+
+/* UI Elements */
+.card-box, .card-box-wallet { background: var(--dark); padding: 25px; border-radius: 15px; border: 1px solid #1a1a1a; text-align: center; }
+.price-giant { color: var(--gold); font-size: 45px; margin: 15px 0; }
+.gold-btn { background: var(--gold); border: none; width: 100%; padding: 15px; border-radius: 30px; font-weight: bold; margin-top: 20px; }
+.outline-btn { background: none; border: 1.5px solid var(--gold); color: var(--gold); width: 100%; padding: 13px; border-radius: 30px; margin-top: 10px; font-weight: bold; }
 
 /* Navbar */
-.navbar { position: fixed; bottom: 0; width: 100%; background: #080808; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #1a1a1a; z-index: 999; }
-.nav-item { text-align: center; color: #666; flex: 1; cursor: pointer; transition: 0.2s; }
+.navbar { position: fixed; bottom: 0; width: 100%; background: #080808; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #1a1a1a; z-index: 1000; }
+.nav-item { color: #555; text-align: center; flex: 1; }
 .nav-item.active { color: var(--gold); }
-.nav-img { width: 22px; filter: grayscale(1); margin-bottom: 4px; }
-.nav-item.active .nav-img { filter: none; }
-.nav-item p { font-size: 9px; margin: 0; font-weight: bold; }
-
-/* Menu Dinamico */
-.category-header { border-left: 4px solid var(--gold); padding-left: 10px; margin: 20px 0; font-size: 18px; }
-.categories-scroll { display: flex; overflow-x: auto; gap: 10px; margin: 15px 0; padding-bottom: 10px; }
-.cat-chip { background: #111; padding: 8px 20px; border-radius: 20px; border: 1px solid #222; white-space: nowrap; font-size: 13px; }
-.cat-chip.active { border-color: var(--gold); color: var(--gold); }
+.icon { font-size: 22px; display: block; }
+.nav-item p { font-size: 10px; margin: 0; font-weight: bold; }
