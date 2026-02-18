@@ -1,42 +1,28 @@
-:root { --gold: #D4AF37; --bg: #000; --card: #0f0f0f; }
-body { background: var(--bg); color: #fff; font-family: sans-serif; margin: 0; padding-bottom: 100px; overflow-x: hidden; }
+:root { --gold: #D4AF37; --bg: #000; }
+body { background: var(--bg); color: #fff; font-family: sans-serif; margin: 0; padding-bottom: 80px; }
 
-/* Header */
-.header { display: flex; justify-content: space-between; padding: 15px; align-items: center; sticky; top: 0; background: #000; z-index: 100; }
-.avatar-ring { width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid var(--gold); overflow: hidden; }
-.avatar-ring img { width: 100%; height: 100%; object-fit: cover; }
-.wallet-pill { border: 1px solid var(--gold); padding: 6px 14px; border-radius: 20px; color: var(--gold); font-weight: bold; background: rgba(212, 175, 55, 0.1); }
+/* Caricamento rapido elementi */
+.header { display: flex; justify-content: space-between; padding: 15px; align-items: center; background: #000; position: sticky; top: 0; z-index: 100; }
+.avatar-ring { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--gold); overflow: hidden; background: #111; }
+.wallet-pill { border: 1px solid var(--gold); padding: 5px 12px; border-radius: 20px; color: var(--gold); font-weight: bold; font-size: 13px; }
 
-/* Pagine */
-.page { display: none; padding: 0 10px; animation: fadeIn 0.2s; }
-.page.active { display: block; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+/* Shop Grid */
+#shop-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
+.product-card { background: #111; border-radius: 5px; border: 1px solid #222; overflow: hidden; display: flex; flex-direction: column; }
+.product-banner { background: var(--gold); color: #000; font-weight: bold; font-size: 10px; padding: 5px; text-align: center; }
+.product-img { width: 100%; aspect-ratio: 1/1.2; object-fit: cover; background: #000; }
 
-/* Shop Grid e Titoli */
-#shop-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding-bottom: 20px; }
-.category-title { grid-column: 1 / -1; border-left: 4px solid var(--gold); padding-left: 10px; margin: 25px 0 10px; font-size: 18px; color: #fff; text-transform: uppercase; }
+/* Saldo */
+.card-wallet-border { border: 2px solid var(--gold); border-radius: 20px; margin: 20px 10px; padding: 30px 15px; text-align: center; }
+.main-balance { color: var(--gold); font-size: 48px; margin: 10px 0; font-weight: 900; }
+.action-btn { background: none; border: 1.5px solid #333; color: var(--gold); width: 100%; padding: 14px; border-radius: 40px; margin-bottom: 12px; font-weight: bold; text-transform: uppercase; }
 
-/* Scheda Prodotto (Fissa come foto) */
-.product-card { background: #111; border-radius: 5px; overflow: hidden; border: 1px solid #222; display: flex; flex-direction: column; }
-.product-banner { background: var(--gold); color: #000; font-weight: bold; font-size: 11px; padding: 5px; text-align: center; }
-.product-img { width: 100%; aspect-ratio: 1/1.2; object-fit: cover; }
-.price-tag { background: rgba(212, 175, 55, 0.1); border: 1px solid var(--gold); color: var(--gold); font-weight: bold; margin: 8px auto; padding: 4px 12px; border-radius: 3px; font-size: 14px; }
-.month-select { background: #222; color: #fff; border: 1px solid #333; padding: 8px; width: 90%; margin: 5px auto; border-radius: 3px; }
-.add-btn { background: var(--gold); border: none; padding: 10px; width: 90%; margin: 10px auto; font-weight: bold; font-size: 10px; }
-
-/* Pagina Saldo (Fissata) */
-.page-title-saldo { text-align: center; color: var(--gold); font-size: 30px; margin-top: 40px; }
-.card-wallet-border { border: 2px solid var(--gold); border-radius: 20px; margin: 15px; padding: 40px 20px; text-align: center; }
-.main-balance { color: var(--gold); font-size: 45px; margin: 10px 0; }
-.action-btn { background: none; border: 1.5px solid #333; color: var(--gold); width: 100%; padding: 14px; border-radius: 40px; margin-bottom: 12px; font-weight: bold; }
-
-/* Navbar (Fissata) */
-.navbar { position: fixed; bottom: 0; width: 100%; background: #080808; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #1a1a1a; z-index: 1000; }
-.nav-item { color: #555; text-align: center; flex: 1; cursor: pointer; }
+/* Navbar */
+.navbar { position: fixed; bottom: 0; width: 100%; background: #080808; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #1a1a1a; z-index: 1000; }
+.nav-item { color: #555; text-align: center; flex: 1; }
 .nav-item.active { color: var(--gold); }
 .icon { font-size: 20px; display: block; }
 .nav-item p { font-size: 9px; margin: 0; font-weight: bold; }
 
-/* Info Card */
-.info-card { background: var(--card); padding: 20px; border-radius: 12px; border: 1px solid #1a1a1a; margin-bottom: 15px; }
-.gold-title { color: var(--gold); margin: 0 0 10px 0; }
+.page { display: none; }
+.page.active { display: block; }
