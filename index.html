@@ -13,7 +13,7 @@
                 <div class="avatar-ring"><img id="u-photo" src=""></div>
                 <div class="text">
                     <span class="small">Ciao,</span>
-                    <span id="u-name" class="bold">...</span>
+                    <span id="u-name" class="bold">Giacomo</span>
                 </div>
             </div>
             <div class="wallet-pill" onclick="tab('saldo')">
@@ -21,12 +21,11 @@
             </div>
         </header>
 
-        <main id="content">
+        <main id="main-content">
             <section id="page-menu" class="page active">
                 <div class="hero">
                     <h1 class="gold-glow">RAINBOW SERVICE</h1>
                 </div>
-                <div id="cat-nav" class="categories-scroll"></div>
                 <div id="shop-container"></div>
             </section>
 
@@ -50,7 +49,7 @@
                 <h1 class="page-title">COMMUNITY</h1>
                 <div class="card-box">
                     <div class="icon-big">👥</div>
-                    <p>Oltre 800 membri attivi.</p>
+                    <p>Oltre 800 membri attivi che condividono feedback e suggerimenti ogni giorno.</p>
                     <button class="gold-btn-full">UNISCITI AL CANALE</button>
                 </div>
             </section>
@@ -62,7 +61,7 @@
                     <h2 class="main-balance">€44.00</h2>
                     <p class="desc-saldo">Utilizza il credito per acquistare i tuoi abbonamenti preferiti in un click.</p>
                     <button class="action-btn" onclick="aggiungiFondi()">AGGIUNGI FONDI</button>
-                    <button class="action-btn">CRONOLOGIA ACQUISTI</button>
+                    <button class="action-btn" onclick="tg.showAlert('In arrivo...')">CRONOLOGIA ACQUISTI</button>
                 </div>
             </section>
 
@@ -70,6 +69,7 @@
                 <h1 class="page-title">ASSISTENZA</h1>
                 <div class="card-box">
                     <h4 class="gold-title">💬 Supporto Live</h4>
+                    <p>Siamo online per rispondere a ogni tua domanda.</p>
                     <button class="gold-btn-full" onclick="tg.close()">PARLA CON UN OPERATORE</button>
                 </div>
             </section>
